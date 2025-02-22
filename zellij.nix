@@ -215,6 +215,9 @@ keybinds clear-defaults=true {
     shared_except "locked" "entersearch" "renametab" "renamepane" "move" {
         bind "m" { SwitchToMode "move"; }
     }
+    shared_except "locked" "entersearch" "search" "renametab" "renamepane" "session" {
+        bind "o" { SwitchToMode "session"; }
+    }
     shared_except "locked" "tab" "entersearch" "renametab" "renamepane" {
         bind "t" { SwitchToMode "tab"; }
     }
@@ -223,9 +226,6 @@ keybinds clear-defaults=true {
     }
     shared_among "normal" "resize" "tab" "scroll" "prompt" "tmux" {
         bind "p" { SwitchToMode "pane"; }
-    }
-    shared_among "normal" "resize" "tab" "scroll" "prompt" "tmux" {
-        bind "o" { SwitchToMode "session"; }
     }
     shared_except "locked" "resize" "pane" "tab" "entersearch" "renametab" "renamepane" {
         bind "r" { SwitchToMode "resize"; }
@@ -282,16 +282,16 @@ plugins {
 themes {
     kanagawa_dragon {
         fg "#dcdccc"
-        bg "#282828"
+        bg "#1a1a1a"
         red "#C34043"
         green "#728F66"
         yellow "#9D8F6F"
         blue "#8BA4B0"
-        magenta "#8BA4B0"
+        magenta "#ff79c6"
         cyan "#8be9fd"
         orange "#ffb86c"
-        black "#1a1a1a"
-        white "#8D909D"
+        black "#282828"
+        white "#8D908D"
     } 
 
     everforest {
@@ -307,53 +307,51 @@ themes {
         black "#1a1a1a"
         white "#8D908D"
     }
-
     rose_pine_moon {
-        fg "#e0def4"
-        bg "#191724"
-        red "#eb6f92"
-        green "#31748f"
-        yellow "#f6c177"
-        blue "#9ccfd8"
-        magenta "#c4a7e7"
-        cyan "#9ccfd8"
-        orange "#f6c177"
-        black "#191724"
-        white "#e0def4"
+        fg "#e0def4"        // light text
+        bg "#191724"        // dark background
+        red "#eb6f92"       // refined pink
+        green "#31748f"     // soft teal
+        yellow "#f6c177"    // soft yellow
+        blue "#9ccfd8"      // sky blue
+        magenta "#c4a7e7"   // soft purple
+        cyan "#9ccfd8"      // same as sky blue for consistency
+        orange "#f6c177"    // same as soft yellow
+        black "#191724"     // darker background (almost black)
+        white "#e0def4"     // same as light text
     }
-
-    sakura {
-      fg "#c5a3a9"
-      bg "#1c1a1c"
-      red "#2B1720"
-      green "#878fb9"
-      yellow "#9e97d0"
-      blue "#878fb9"
-      magenta "#9e97d0"
-      cyan "#878fb9"
-      orange "#9e97d0"
-      black "#1c1a1c"
-      white "#c5a3a9"
-    }
-
     oldWorld {
-      fg "#C9C7CD"
-      bg "#000000"
-      red "#EA83A5"
-      green "#90B99F"
-      yellow "#E6B99D"
-      blue "#85B5BA"
-      magenta "#92A2D5"
-      cyan "#85B5BA"
-      orange "#F5A191"
-      black "#000000"
-      white "#C9C7CD"
+        fg "#c5a3a9"        // na: texto principal (gris claro)
+        bg "#1c1a1c"        // bl: fondo oscuro (gris casi negro)
+        red "#000000"       // ia: rosa intenso
+        green "#eb6f92"     // va: verde suave
+        yellow "#E6B99D"    // ca: beige (reemplaza el amarillo)
+        blue "#85B5BA"      // va: azul-verde
+        magenta "#92A2D5"   // ca: azul lavanda
+        cyan "#85B5BA"      // va: azul-verde
+        orange "#F5A191"    // ca: melocotón claro
+        black "#000000"     // bl: fondo oscuro (gris casi negro)
+        white "#EA83A5"     // na: texto claro (gris claro)
+    }
+    sakura {
+        fg "#c5a3a9"        // na: texto principal
+        bg "#1c1a1c"        // bl: fondo oscuro
+        red "#2B1720"       // ia: rosa
+        green "#878fb9"     // va: azul
+        yellow "#9e97d0"    // ca: púrpura (sustituye amarillo)
+        blue "#878fb9"      // va: azul
+        magenta "#9e97d0"   // ca: púrpura
+        cyan "#878fb9"      // va: azul
+        orange "#9e97d0"    // ca: púrpura
+        black "#1c1a1c"     // bl: fondo
+        white "#c5a3a9"     // na: texto claro
     }
 }
 theme "oldWorld"
 default_mode "locked"
 scrollback_editor "nvim"
 default_layout "work_oldWorld"
+default_shell "nu"
       '';
     };
     ".config/zellij/layouts/work_oldWorld.kdl" = {
@@ -370,35 +368,36 @@ layout {
     default_tab_template {
         pane size=1 borderless=true {
             plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
-                format_left   "{mode} #[fg=#E29ECA,bold]{session}{tabs}"
-                format_right  "{command_git_branch} {datetime}"
-                format_space  ""
+              format_left   "{mode} #[fg=#8BA4B0,bold]{session}{tabs}"
+              format_right  "{command_git_branch} {datetime}"
+              format_space  ""
 
-                border_enabled  "false"
-                border_char     "─"
-                border_format   "#[fg=#161617]{char}"
-                border_position "top"
+              border_enabled  "false"
+              border_char     "─"
+              border_format   "#[fg=#9D8F6F]{char}"
+              border_position "top"
 
-                hide_frame_for_single_pane "true"
-                mode_normal  "#[bg=#85B5BA] "
-                mode_tmux    "#[bg=#EA83A5] "
+              hide_frame_for_single_pane "true"
 
-                tab_normal   "#[fg=#C9C7CD] {name} "
-                tab_active   "#[fg=#92A2D5,bold,italic] {name} "
+              mode_normal  "#[bg=#C34043] "
+              mode_tmux    "#[bg=#f1fa8c] "
 
-                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                command_git_branch_format      "#[fg=#85B5BA] {stdout} "
-                command_git_branch_interval    "10"
-                command_git_branch_rendermode  "static"
+              tab_normal   "#[fg=#8D908D] {name} "
+              tab_active   "#[fg=#728F66,bold,italic] {name} "
 
-                datetime        "#[fg=#C9C7CD,bold] {format} "
-                datetime_format "%A, %d %b %Y %H:%M"
-                datetime_timezone "Europe/Berlin"
+              command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+              command_git_branch_format      "#[fg=green] {stdout} "
+              command_git_branch_interval    "10"
+              command_git_branch_rendermode  "static"
+
+              datetime        "#[fg=#9D8F6F,bold] {format} "
+              datetime_format "%A, %d %b %Y %H:%M"
+              datetime_timezone "Europe/Berlin"
             }
         }
         children
         pane size=1 borderless=true  {
-            plugin location="zellij:status-bar"
+          plugin location="zellij:status-bar"
         }
     }
 }

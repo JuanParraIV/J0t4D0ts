@@ -12,7 +12,7 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      system = "aarch64-darwin";  # Asegurate de que coincida con tu sistema
+      system = "x86_64-linux";  # Asegurate de que coincida con tu sistema
       pkgs = import nixpkgs { inherit system; };
     in {
       homeConfigurations = {
@@ -23,19 +23,20 @@
               ./nushell.nix  
               ./ghostty.nix  
               ./wezterm.nix  
-              # ./zellij.nix   
+              ./kitty.nix 
+              ./zellij.nix   
               ./fish.nix
               ./starship.nix 
               ./nvim.nix     
               {
                 # Datos personales
-                home.username = "YourUser";
-                home.homeDirectory = "/Users/YourUser/";
+                home.username = "jotamario";
+                home.homeDirectory = "/home/jotamario/";
                 home.stateVersion = "24.11";
 
                 home.packages = with pkgs; [
                   # ─── Terminals y utilidades ───
-                  # zellij
+                  zellij
                   fish
                   nushell
 

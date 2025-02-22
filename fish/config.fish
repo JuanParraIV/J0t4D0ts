@@ -18,6 +18,14 @@ set -x PATH $PATH /usr/local/bin $HOME/.config $HOME/.cargo/bin /usr/local/lib/*
 
 eval ($BREW_BIN shellenv)
 
+if not set -q ZELLIJ
+    zellij
+end
+
+if type -q starship
+    starship init fish | source
+end
+
 starship init fish | source
 zoxide init fish | source
 atuin init fish | source
@@ -38,10 +46,26 @@ if test (uname) = Darwin
 else
     alias ls='gls --color=auto'
 end
+# Custom Aliases
+alias nrd="npm run dev"
+alias nrb="npm run build"
+alias gs="git status"
+alias gcm="git commit -m"
+alias ni="npm install"
+alias nu="npm uninstall"
+alias nr="npm run"
+alias nrp="npm run prisma:studio"
+alias k='kubectl'
+alias ll='lsd -lh --group-dirs=first'
+alias la='lsd -a --group-dirs=first'
+alias l='lsd --group-dirs=first'
+alias lla='lsd -lha --group-dirs=first'
+alias cat='/bin/batcat --paging=never'
 
+alias catn='cat'
+alias catnl='batcat'
 alias fzfbat='fzf --preview="bat --theme=gruvbox-dark --color=always {}"'
 alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")'
-
 ## everforest
 #set -l foreground d3c6aa
 #set -l selection 2d4f67
@@ -66,31 +90,17 @@ alias fzfnvim='nvim (fzf --preview="bat --theme=gruvbox-dark --color=always {}")
 #set -l cyan 9ccfd8 # foam - teal
 #set -l pink eb6f92 # love - soft pink
 
-## Sakura colors
-#set -l foreground c5a3a9  # na: text (light pink)
-#set -l selection 3f3b3e   # gr: dark gray (highlight)
-#set -l comment 4e4044     # nb: dark brown (comments)
-#set -l red c58ea7         # ia: intense pink (errors)
-#set -l orange 9e97d0      # ca: soft purple (warnings)
-#set -l yellow 9e97d0      # ca: soft purple (warnings)
-#set -l green 878fb9       # va: light blue (success)
-#set -l purple 9e97d0      # ca: soft purple (highlight)
-#set -l cyan 878fb9        # va: light blue (information)
-#set -l pink c58ea7        # ia: intense pink (highlight)
-
-# --- Base colors ---
-set -l foreground C9C7CD # na: main text (light gray)
-set -l selection 3B4252 # gr: dark gray (highlight)
-set -l comment 4C566A # nb: medium gray (comments)
-
-# --- Accent colors ---
-set -l red EA83A5 # ia: intense pink (errors)
-set -l orange F5A191 # ca: light peach (warnings)
-set -l yellow E6B99D # ca: beige (warnings)
-set -l green 90B99F # va: soft green (success)
-set -l purple 92A2D5 # ca: lavender blue (highlight)
-set -l cyan 85B5BA # va: blue-green (information)
-set -l pink E29ECA # ia: soft pink (highlight)
+# Sakura colors
+set -l foreground c5a3a9 # na: texto (rosa claro)
+set -l selection 3f3b3e # gr: gris oscuro (resaltado)
+set -l comment 4e4044 # nb: marrón oscuro (comentarios)
+set -l red c58ea7 # ia: rosa intenso (errores)
+set -l orange 9e97d0 # ca: púrpura suave (advertencias)
+set -l yellow 9e97d0 # ca: púrpura suave (advertencias)
+set -l green 878fb9 # va: azul claro (éxito)
+set -l purple 9e97d0 # ca: púrpura suave (destacado)
+set -l cyan 878fb9 # va: azul claro (información)
+set -l pink c58ea7 # ia: rosa intenso (destacado)
 
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground
@@ -113,5 +123,6 @@ set -g fish_pager_color_progress $comment
 set -g fish_pager_color_prefix $cyan
 set -g fish_pager_color_completion $foreground
 set -g fish_pager_color_description $comment
+
 
 clear

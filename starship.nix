@@ -39,7 +39,7 @@ text_color = "#C9C7CD"
 text_light = "#000000"
 
 [character]
-success_symbol = "[󱗞](fg:#85B5BA)"
+success_symbol = "[󱗞](fg:#EA83A5)"
 error_symbol   = "[󱗞](fg:red)"
 
 [username]
