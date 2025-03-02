@@ -1,10 +1,11 @@
-# Gentleman.Dots
+# J0t4D0ts
 
-![Screenshot](https://github.com/user-attachments/assets/3f6c4f62-23d7-41d7-b7b1-42c7e0c32336)
+![image](https://github.com/user-attachments/assets/b139e41a-39b5-4fe8-ace1-562ed0633a7b)
+
 
 ---
 
-# Gentleman.Dots
+# J0t4D0ts
 
 ## Description
 
@@ -16,6 +17,7 @@ This repository contains customized configurations for a complete development en
 - Terminal emulators:
   - **WezTerm**
   - **Ghostty**
+  - **kitty**
 
 You can now automatically set up your environment using our new Nix Flake approach with Home Manager. This method is fully declarative and reproducible, and it lets you easily override default options. In our flake, all configurations are defined inline in local modules (e.g., `nushell.nix`, etc.), and the flake also installs all the required dependencies (git, curl, rustc, cargo, neovim, etc.).
 
@@ -87,6 +89,7 @@ Modify the parameters in your `flake.nix` file as follows:
 
   - Wezterm: <https://wezterm.org/installation.html>
   - Ghostty: <https://ghostty.org/download> _Remember to reload Ghostty's Config inside the terminal_**(shift + command + ,)**
+  - Kitty: <https://sw.kovidgoyal.net/kitty/>
 
 - Modify `home.homeDirectory` accordingly:
 
@@ -102,7 +105,7 @@ Modify the parameters in your `flake.nix` file as follows:
 Once you're in the repo directory and have made the above changes, run:
 
 ```bash
-nix run github:nix-community/home-manager -- switch --flake .#gentleman -b backup
+nix run github:nix-community/home-manager -- switch --flake .#jota -b backup
 ```
 
 _(This command applies the configuration defined in the flake, installing all dependencies and applying the necessary settings.)_
@@ -125,7 +128,7 @@ sudo chsh -s "$shellPath" "$USER"
 
 ```bash
 git clone git@github.com:Gentleman-Programming/Gentleman.Dots.git
-cd Gentleman.Dots
+cd J0t4D0ts
 ```
 
 #### 1. Install WSL
@@ -255,4 +258,4 @@ For any questions or further customizations, please open an issue or submit a pu
 
 **Happy coding!**
 
-— Gentleman
+— J0t4m4r10
